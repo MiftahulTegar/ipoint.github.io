@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{% block title %} {% endblock %} Ipoint</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='a/style.css')}}">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.7.2/css/all.css"></script>
+    </head>
+
+    <script>
+         $(document).ready(function() {
+            var pesan = $('#msg');
+            $(pesan).hide();
+            $("#sub-registry").click(function() {
+                var username = $("#username").val();
+                var password = $("#password").val();
+                var nama = $("#nama").val();
+                var nip = $("#nip").val();
+                if(username != "" && password != "" && nama != "" && nip != ""){
+           			if(password.length < 8){
+                            $(pesan).show()
+                            $(pesan).html("<span style='color:red;'>Password harus 8 karakter</span>")
+                            return false
+                       }
+                }else{
+                    $(pesan).show()
+                    $(pesan).html("<span style='color:red;'>Lengkapi form</span>")
+                }
+            });
+        });
+    </script>
+    
+    <body>
+        <div class="wrapper">
+            <div class="logo">  <img src="{{ url_for('static', filename='gambar/dosen.png')}}" alt=""> </div> <br>
+            <form class="p-3 mt-3" action="{{ url_for('registrasi') }}" method="POST">
+                {% include 'flash.html' %}
+                <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type='text' name='nama' id='nama' placeholder="Masukkan Nama" required/> </div>
+
+                <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type='text' name='jabatan' id='jabatan' placeholder="Masukkan Jabatan" required/> </div>
+
+                <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type='email' name='email' id='email' placeholder="Masukkan Email" required/> </div>
+
+                <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type='text' name='telp' id='telp' placeholder="Masukkan Nomer Telepon" required/> </div>
+
+                <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type='text' name='alamat' id='alamat' placeholder="Masukkan Alamat" required/> </div>
+
+                <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type='text' name='username' id='username' placeholder="Masukkan Username" required/> </div>
+
+                <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type='password' name='password' id='password' placeholder="Masukkan Password" required/> </div>
+                
+                <div id='msg'></div>
+                <button class="btn mt-3" type='submit' id='sub-registry'>Submit</button>
+            </form> <br>
+            <div class="text-center fs-6"> Sudah punya akun ? <a href="/logindosen"> Masuk </a> </div>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{% block title %} {% endblock %} Ipoint</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='a/forum.css')}}">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.7.2/css/all.css"></script>
+    </head>
+
+    <script>
+         $(document).ready(function() {
+            var pesan = $('#msg');
+            $(pesan).hide();
+            $("#sub-registry").click(function() {
+                var judul_forum = $("#judul_forum").val();
+            });
+        });
+    </script>
+    
+    <body>
+        <div class="wrapper">
+            <div class="logo"> <img src="{{ url_for('static', filename='gambar/logo.png')}}"> </div> <br>
+            <form class="p-3 mt-3" action="{{ url_for('daftarforum') }}" method="POST">
+                {% include 'flash.html' %}
+                <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type='text' name='judul_forum' id='judul_forum' placeholder="Masukkan Judul" required/> </div>
+                <div id='msg'></div>
+                <button class="btn mt-3" type='submit' id='sub-registry'>Buat</button>
+            </form> <br>
+        </div>
+    </body>
+
+</html>

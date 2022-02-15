@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{% block title %} {% endblock %} Ipoint</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='a/forum.css')}}">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.7.2/css/all.css"></script>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <div class="logo"> <img src="{{ url_for('static', filename='gambar/logo.png')}}"> </div> <br>
+            {% for a in y %}
+            <form class="p-3 mt-3" action="{{ url_for('mengirimpesan', id=a['id']) }}" method="POST">
+            {% endfor %}
+                {% include 'flash.html' %}
+                <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span>
+                <input type='text' name='isi_pesan' id='isi_pesan' placeholder="Pesan anda" required/> </div>
+                <button class="btn mt-3" type='submit' id='sub-registry'>Kirim</button>
+            </form> <br>
+        </div>
+    </body>
+
+</html>
